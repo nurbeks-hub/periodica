@@ -84671,7 +84671,8 @@ function createUI(root, handlers) {
       const x = phone ? 10 + i * (80 / Math.max(1, L.length - 1)) : c.x;
       const hh = phone ? c.h * 0.74 : c.h;
       g.style.cssText = `left:${x}%;height:${hh}vh;z-index:${c.zi};--gc:${el.glow};--fc:${famColor(el.family)};--dur:${5 + (i % 3)}s;--ph:${-i * 0.7}s`;
-      const img = h('img', null, null, { src: heroUrl(el.z), alt: el.name.en, draggable: 'false' });
+      const img = h('img', null, null, { src: heroUrl(el.z), alt: el.name.en, draggable: 'false', fetchpriority: 'high' });
+      const ok = () => img.classList.add('ok'); if (img.complete && img.naturalWidth) ok(); else img.addEventListener('load', ok, { once: true });
       const tag = h('span', 'tag', `${el.sym} · ${el.name[lang] || el.name.en}`);
       g.append(img, tag); cast.append(g);
       g.addEventListener('click', () => handlers.onGirl?.(el.z));
@@ -91856,7 +91857,7 @@ async function boot() {
   thermo.setLang(ui.lang);
   await Promise.all([loadMod('react', () => __DYN__("/Users/nurbek.s/Documents/Claude/2026-09-25/periodica/site/src/react.js"), 'createReaction'), loadMod('versus', () => __DYN__("/Users/nurbek.s/Documents/Claude/2026-09-25/periodica/site/src/versus.js"), 'createVersus'), loadMod('quiz', () => __DYN__("/Users/nurbek.s/Documents/Claude/2026-09-25/periodica/site/src/quiz.js"), 'createQuiz')]);
   ui.setToolsHost(wall.toolsSlot);
-  ui.buildCast(CAST, byZ, (f) => FACTIONS[f].color, (z) => assetUrl('hero', z));
+  ui.buildCast(CAST, byZ, (f) => FACTIONS[f].color, (z) => `assets/cast/${String(z).padStart(3, '0')}.webp`);
 
   // loading: fonts + first-screen images
   const fontsP = Promise.race([Promise.all(['800 60px Unbounded', '700 30px Unbounded', '500 14px Inter', '500 16px "Noto Sans JP"'].map(f => document.fonts.load(f))), new Promise(r => setTimeout(r, 3500))]);

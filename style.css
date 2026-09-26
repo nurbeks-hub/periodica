@@ -241,3 +241,6 @@ body.video .wall-scroll { padding-top: 104px; padding-bottom: 24px; }
 .act-vs:hover { box-shadow: 0 0 24px color-mix(in srgb, var(--glow) 60%, transparent); }
 @media (max-height: 940px) and (min-width: 761px) { .znum { display: none; } .name { margin-top: 10px; } .fact { margin-top: 10px; } .stats { margin-top: 14px; } .spec { margin-top: 14px; } .acts { margin-top: 14px; } .info-btn { margin-top: 12px; } }
 @media (max-width: 760px) { .acts { margin-top: 10px; gap: 8px; } .act-react { padding: 8px; } .chip-p, .chip-more { width: 40px; height: 40px; } .act-vs { padding: 8px 12px; } .act-vs b { font-size: 18px; } .fact { display: none; } }
+
+.cast .girl img { opacity: 0; transition: opacity .6s ease, filter .3s, transform .3s; }
+.cast .girl img.ok { opacity: 1; }
