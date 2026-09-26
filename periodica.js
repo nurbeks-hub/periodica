@@ -91810,6 +91810,7 @@ async function boot() {
     onVersusPick: () => mods.versus?.open(curZ),
   });
   ui.setSound(true);
+  ui.buildCast(CAST, byZ, (f) => FACTIONS[f].color, (z) => `assets/cast/${String(z).padStart(3, '0')}.webp`);
 
   // ---- reactions data + collection
   let reactions = globalThis.__PERIODICA_REACTIONS || null;
@@ -91857,7 +91858,6 @@ async function boot() {
   thermo.setLang(ui.lang);
   await Promise.all([loadMod('react', () => __DYN__("/Users/nurbek.s/Documents/Claude/2026-09-25/periodica/site/src/react.js"), 'createReaction'), loadMod('versus', () => __DYN__("/Users/nurbek.s/Documents/Claude/2026-09-25/periodica/site/src/versus.js"), 'createVersus'), loadMod('quiz', () => __DYN__("/Users/nurbek.s/Documents/Claude/2026-09-25/periodica/site/src/quiz.js"), 'createQuiz')]);
   ui.setToolsHost(wall.toolsSlot);
-  ui.buildCast(CAST, byZ, (f) => FACTIONS[f].color, (z) => `assets/cast/${String(z).padStart(3, '0')}.webp`);
 
   // loading: fonts + first-screen images
   const fontsP = Promise.race([Promise.all(['800 60px Unbounded', '700 30px Unbounded', '500 14px Inter', '500 16px "Noto Sans JP"'].map(f => document.fonts.load(f))), new Promise(r => setTimeout(r, 3500))]);
